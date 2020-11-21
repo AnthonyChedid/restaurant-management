@@ -1,18 +1,29 @@
-import './App.css';
-import  RestaurantList from './components/Posts';
-import { Provider} from 'react-redux';
- 
-import store from './Store';
+import React from 'react';
 
-function App() {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <h1>Hello</h1>
-        <RestaurantList/>
-      </div>
-    </Provider>
-  );
-}
+import './App.css';
+import { Provider } from 'react-redux';
+
+import Posts from './components/Posts';
+
+import NavBar from './components/navbar/NavBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+
+import store from './store';
+
+function App(){
+    return (
+      <Provider store={store}>
+        <MuiThemeProvider>
+        <div className="App">
+          <NavBar/>
+        
+          <Posts/>
+        </div>
+        </MuiThemeProvider>
+      </Provider>
+    );
+  }
+
 
 export default App;

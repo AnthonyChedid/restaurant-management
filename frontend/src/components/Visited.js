@@ -1,1 +1,0 @@
-const { createFactory } = require("react");

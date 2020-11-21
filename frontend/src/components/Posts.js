@@ -1,34 +1,37 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from '../actions/postActions';
 
-class Posts extends Component {
+const Posts = () => {
+    
+  //----- redux and dispatch the action
+  const techSelector = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const getTechNews = () => dispatch(fetchPosts());
+  
 
-    componentWillMout(){
-        this.props.fetchPosts();
-    }
-    render() {
-        const postItems=this.state.posts.map(post => (
-            <div key={post.id}>
-                <h3>{post.restaurantName}</h3>
-                <p>{post.cost}</p>s
+  useEffect(()=>{
+    getTechNews();
+ }, [])
 
-            </div>
-        ));this.setState();
-        return (
-            <div>
-                {postItems}
-             </div>
-        )
-    }
+
+  return(
+      <React.Fragment>
+          <section>
+              <div>
+                  {techSelector.items.map(x => {
+                      return (
+                          <div key={x.id}> 
+                              <img src={x.image} />
+                              <h2>{x.restaurantName}</h2>
+                              <p>{x.address}</p>
+                          </div>
+                      )
+                  })}
+              </div>
+          </section>
+      </React.Fragment>
+  )   
 }
-Posts.PropTypes = {
-    fetchPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired
-}
-const  mapStateToProps =state => ({
-    posts: state.posts
-});
 
-export default connect(mapStateToProps,{ fetchPosts })(Posts);
+export default Posts;
