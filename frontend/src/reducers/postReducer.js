@@ -1,18 +1,31 @@
-import { FETCH_POSTS, NEW_POST } from '../actions/types';
+import * as type from '../actions/types';
 
-const initialState = {
-  items: [],
-  item: {}
-};
+const initiateState={
+  posts:[],
+  loading:false,
+  error:null,
+}
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case FETCH_POSTS:
+export default function posts(state = initiateState,action){
+  switch(action.type){
+    case type.FETCH_POSTS_REQUESTED:
       return {
         ...state,
-        items: action.payload
-      };
-    default:
-      return state;
+        loading:true,
+      }
+      case type.FETCH_POSTS_SUCCESS:
+        return{
+          ...state,
+          loading:false,
+          posts:action.posts,
+        }
+      case type.FETCH_POSTS_FAILED:
+        return{
+          ...state,
+          loading:false,
+          error:action.message,
+        }
+      default:
+        return state;
   }
 }
