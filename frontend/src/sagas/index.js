@@ -6,6 +6,6 @@ import visitSaga from './visitSaga';
 export default function* rootSaga(){
     yield all([
         postsSaga(),
-        visitSaga()
+        visitSaga(),
     ])
 }

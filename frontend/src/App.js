@@ -17,7 +17,7 @@ function App(){
         <MuiThemeProvider>
         <div className="App">
           <NavBar/>
-          <Search/>
+         
           <Posts/>
         </div>
         </MuiThemeProvider>

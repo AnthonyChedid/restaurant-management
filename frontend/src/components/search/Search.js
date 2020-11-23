@@ -1,36 +1,41 @@
-import React from 'react'
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+// import React from 'react'
+// import TextField from 'material-ui/TextField';
+// import SelectField from 'material-ui/SelectField';
+// import MenuItem from 'material-ui/MenuItem';
 
-export default function Search() {
+// export default function Search() {
+//     const state={
+//         searchText:"",
+//         type:"",
 
-    // onTextChange = (e) =>{
-    //     this.setState({[e.target.restaurantName]: e.target.value});
-    // }
+//     };
 
-    return (
-        <div>
-            <TextField 
-            name="searchText"
-            //value={posts.searchText}
-            //onChange={onTextChange}
-            floatingLabelText="Search Restaurant"
-            fullWidth={true}
-            />
-            <br/>
-            <SelectField
-                name="type"
-                floatingLabelText="Type"
-                //value={this.state.amount}
-                //onChange={this.onAmountChange}
-                    >
-                <MenuItem value={1} primaryText="Lebanese" />
-                <MenuItem value={2} primaryText="Japanese" />
-                <MenuItem value={3} primaryText="American" />
-                <MenuItem value={4} primaryText="Italian" />
-            </SelectField>
+//     // onTextChange = (e) =>{
+//     //     this.setState({[e.target.restaurantName]: e.target.value});
+//     // }
 
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <TextField 
+//             name="searchText"
+//             value={state.searchText}
+//             onChange={onTextChange}
+//             floatingLabelText="Search Restaurant"
+//             fullWidth={true}
+//             />
+//             <br/>
+//             <SelectField
+//                 name="type"
+//                 floatingLabelText="Type"
+//                 value={state.type}
+//                 onChange={onAmountChange}
+//                 >
+//                 <MenuItem value={"Lebanese"} primaryText="Lebanese" />
+//                 <MenuItem value={"Japanese"} primaryText="Japanese" />
+//                 <MenuItem value={"American"} primaryText="American" />
+//                 <MenuItem value={"Italian"} primaryText="Italian" />
+//             </SelectField>
+
+//         </div>
+//     )
+// }

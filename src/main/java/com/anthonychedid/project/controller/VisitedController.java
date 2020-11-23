@@ -16,7 +16,7 @@ public class VisitedController {
     private VisitedRepository visitedRepository;
 
     //get all visited restaurants
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/visited")
     public List<Visited> getAllVisited(){
         return visitedRepository.findAll();

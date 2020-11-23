@@ -40,6 +40,7 @@ export default function Cards(props){
       dispatch(postVisit(visit));
     }  
 
+    
 
     return (
         <Card className={classes.root}>
