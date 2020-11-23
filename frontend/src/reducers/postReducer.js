@@ -7,6 +7,7 @@ const initiateState={
 }
 
 export default function posts(state = initiateState,action){
+  
   switch(action.type){
     case type.FETCH_POSTS_REQUESTED:
       return {

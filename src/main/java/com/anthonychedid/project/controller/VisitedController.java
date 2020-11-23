@@ -24,8 +24,10 @@ public class VisitedController {
 
 
     // add visited employee rest api
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/visit")
     public Visited createVisit (@RequestBody Visited visit){
+
         return visitedRepository.save(visit);
     }
 

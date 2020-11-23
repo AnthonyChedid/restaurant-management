@@ -7,7 +7,7 @@ import Posts from './components/Posts';
 
 import NavBar from './components/navbar/NavBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import Search from './components/search/Search';
 
 import store from './store';
 
@@ -17,7 +17,7 @@ function App(){
         <MuiThemeProvider>
         <div className="App">
           <NavBar/>
-        
+          <Search/>
           <Posts/>
         </div>
         </MuiThemeProvider>

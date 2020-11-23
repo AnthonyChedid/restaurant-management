@@ -17,7 +17,7 @@ function getApi(){
 function* fetchPosts(action){
     
     try{
-        console.log("entering fetch");
+        
         const posts=yield call(getApi);
         yield put({type: 'FETCH_POSTS_SUCCESS',posts:posts});
 
@@ -27,7 +27,6 @@ function* fetchPosts(action){
 }
 
 function* postsSaga(){
-    console.log("saga working");
     yield takeEvery('FETCH_POSTS_REQUESTED', fetchPosts );
 }
 

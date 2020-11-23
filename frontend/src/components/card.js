@@ -7,6 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {postVisit} from '../actions/visitActions'
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +26,21 @@ const useStyles = makeStyles({
 export default function Cards(props){
     
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const handleClick=(e)=>{
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+      today = mm + '/' + dd + '/' + yyyy;
+      let visit={restaurant:e.currentTarget.value,date:today,}
+      console.log(visit);
+      dispatch(postVisit(visit));
+    }  
+
+
     return (
         <Card className={classes.root}>
           <CardActionArea>
@@ -42,7 +61,8 @@ export default function Cards(props){
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small" color="primary">
+            <Button size="small" color="primary" onClick={handleClick} value={ props.post.restaurantName} 
+            >
               Visit
             </Button>
             <Button size="small" color="primary">

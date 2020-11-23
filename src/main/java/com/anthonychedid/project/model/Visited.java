@@ -1,42 +1,37 @@
 package com.anthonychedid.project.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="visited")
 public class Visited {
 
     @Id
-    @Column(name = "id_visit")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name="id_restaurant")
-    private Restaurant restaurant;
+    private String restaurant;
 
-    private Date date;
+    private String date;
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Restaurant getRestaurant() {
+    public String getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public void setRestaurant(String restaurant) {
         this.restaurant = restaurant;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 }
