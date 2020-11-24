@@ -33,7 +33,7 @@ function* urlVisit(visit) {
 
 
   function* visitSaga(){
-    console.log("saga working");
+  
     yield takeLatest('NEW_VISIT_REQUESTED', addVisit );
 }
 
