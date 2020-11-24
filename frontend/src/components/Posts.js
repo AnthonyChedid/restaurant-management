@@ -13,6 +13,11 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { SelectField } from 'material-ui';
+import Load from './Loading';
+import Error from './Error';
+
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 
 
@@ -65,6 +70,15 @@ const Posts=()=>{
     useEffect(()=>{
         dispatch(getPosts(state));
     },[]);
+    
+    while(loading===true){
+        return(
+            <div>
+                <Load/>
+            </div>
+        )
+    }
+    
 
     return (
         <>
@@ -91,16 +105,16 @@ const Posts=()=>{
             <br/>
 
             <Button onClick={HandleSubmit} variant="contained" color="secondary">Search</Button>
-
             <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={spacing}>
-                        {posts.loading && <p>Loading...</p>}
+                        
                         {posts.length>0 && posts.map((post) => (
                             <Card post={post} key={post.id} />
 
                         )) }
-                        {posts.length===0 && <p>No restaurants availble</p>}
+                        {posts.length===0 && <p>No restaurants availble </p>}
+                        <br/>
                         {error && !loading && <p>{error} </p>}
                     </Grid>
                 </Grid>

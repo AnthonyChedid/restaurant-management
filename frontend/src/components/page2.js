@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Container from '@material-ui/core/Container';
 import {useSelector, useDispatch} from 'react-redux';
+import Load from './Loading';
 
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -57,6 +58,14 @@ const Page2=()=>{
     },[]);
 
     const classes = useStyles();
+  
+    while(loading===true){
+      return(
+          <div>
+              <Load/>
+          </div>
+      )
+  }
 
   return (
     <Container maxWidth="sm">
