@@ -25,14 +25,16 @@ const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
       marginTop: 10,
+      minWidth: 120
     },
-    paper: {
-      height: 140,
-      width: 100,
-    },
+  
     control: {
       padding: theme.spacing(2),
     },
+
+    bttn:{
+        marginLeft:30,
+    }
   }));
 
 var state={
@@ -44,6 +46,8 @@ var state={
 
 
 const Posts=()=>{
+    const [type, setType] = React.useState("");
+
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.posts)
     const loading =useSelector(state => state.posts.loading);
@@ -54,12 +58,14 @@ const Posts=()=>{
 
     const OnTextChange= (e) =>{
         state.searchText=e.target.value;
+        
 
     }
     
-    const HandleChange =(e,k,p) =>{
-        state.type=p;
-        
+    const HandleChange =(e) =>{
+      state.type=e.target.value;
+      console.log(e.target.value);
+      setType(e.target.value)
     }
 
     const HandleSubmit =()=>{
@@ -70,6 +76,8 @@ const Posts=()=>{
     useEffect(()=>{
         dispatch(getPosts(state));
     },[]);
+
+    
     
     while(loading===true){
         return(
@@ -78,22 +86,23 @@ const Posts=()=>{
             </div>
         )
     }
-    
 
     return (
         <>
-            <TextField id="textField" 
+        <div className={classes.root}>
+            <TextField flexGrow={1} id="textField" 
                 onChange={OnTextChange}
                 floatingLabelText="Search Restaurant"
                 fullWidth={true}
             />
-            <br/>
-
-            <SelectField
+            
+            <br/><br/>
+            <InputLabel id="selectField">Restaurant Type</InputLabel>
+            <Select
                 className={classes.root}
                 floatingLabelText="Restaurant Type"
                 id="selectField"
-                value={state.type}
+                value={type}
                 onChange={HandleChange}
                 >
                 <MenuItem value={""}>All</MenuItem>
@@ -101,10 +110,11 @@ const Posts=()=>{
                 <MenuItem value={"American"}>American</MenuItem>
                 <MenuItem value={"Italian"}>Italian</MenuItem>
                 <MenuItem value={"Japanese"}>Japanese</MenuItem>
-            </SelectField>
-            <br/>
+            </Select>
 
-            <Button onClick={HandleSubmit} variant="contained" color="secondary">Search</Button>
+            <Button onClick={HandleSubmit} className={classes.bttn} variant="contained" color="secondary">Search</Button>
+            
+            </div>
             <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={spacing}>

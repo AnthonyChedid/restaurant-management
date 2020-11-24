@@ -25,7 +25,7 @@ public class RestaurantController {
     @GetMapping("/restaurants-by-name")
     public List<Restaurant> getRestaurantsByName(@RequestParam String name){
 
-        return restaurantRepository.findByRestaurantNameIgnoreCase(name);
+        return restaurantRepository.findByRestaurantNameStartingWithIgnoreCase(name);
     }
 
     @GetMapping("/restaurants-by-type")
@@ -37,7 +37,7 @@ public class RestaurantController {
     @GetMapping("/restaurants-by-type_name")
     public List<Restaurant> getRestaurantsByTypeName(@RequestParam String name,@RequestParam String type){
 
-        return restaurantRepository.findByRestaurantNameIgnoreCaseAndRestaurantTypeIgnoreCase(name,type);
+        return restaurantRepository.findByRestaurantNameStartingWithIgnoreCaseAndRestaurantTypeIgnoreCase(name,type);
     }
 
 }
