@@ -11,8 +11,6 @@ import page2 from '../page2';
 import { white } from 'material-ui/styles/colors';
 
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

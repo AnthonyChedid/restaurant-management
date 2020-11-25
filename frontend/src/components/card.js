@@ -7,21 +7,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import moment from 'moment';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
-import {postVisit} from '../actions/visitActions'
+import {postVisit} from '../actions/visitActions';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const useStyles = makeStyles({
     root: {
@@ -38,14 +32,10 @@ const useStyles = makeStyles({
       marginTop:20,
       marginBottom:20,
       marginRight:10,
-     
     },
     container:{
       margin:1,
     }
-    
-
-    
   });
 
 
@@ -53,7 +43,6 @@ export default function Cards(props){
     
     const classes = useStyles();
     const dispatch = useDispatch();
-
     const [open, setOpen] = React.useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
 
@@ -61,28 +50,25 @@ export default function Cards(props){
       if (reason === 'clickaway') {
         return;
       }
-  
       setOpen(false);
     };
-
+    
     const handleClick=(e)=>{
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
-
       today = mm + '/' + dd + '/' + yyyy;
       let visit={restaurant:e.currentTarget.value, date:today,}
-
       dispatch(postVisit(visit));
       setOpen(true);
       
     }  
 
-  
     const handleDialog = () => {
       setOpenDialog(true);
     };
+    
     const handleCloseDialog = () => {
       setOpenDialog(false);
     };
@@ -91,10 +77,8 @@ export default function Cards(props){
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
-
-    
-
-    return (
+  
+  return (
         <Card className={classes.root}>
           <CardActionArea>
             <CardMedia
@@ -106,7 +90,7 @@ export default function Cards(props){
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-              {props.post.restaurantName}
+                {props.post.restaurantName}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 {props.post.address}
@@ -115,7 +99,7 @@ export default function Cards(props){
           </CardActionArea>
           <CardActions>
             <Button size="small" color="primary" value={props.post.restaurantName}onClick={handleClick}>
-              Visit
+            <CheckCircleRoundedIcon/>
             </Button>
             <Button size="small" color="primary" onClick={handleDialog}>
               Learn More
@@ -155,7 +139,7 @@ export default function Cards(props){
 
 
           </CardActions>
-          <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           A Visit to {props.post.restaurantName} has been registered
         </Alert>

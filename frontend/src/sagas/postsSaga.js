@@ -2,7 +2,6 @@ import {call,put,takeEvery} from 'redux-saga/effects';
 
 const apiUrl='http://localhost:8085/api/v1/restaurants';
 function getApi(){
-    console.log("fetching url")
     return fetch(apiUrl,{
         method: 'GET',
         headers:{
@@ -16,7 +15,6 @@ function getApi(){
 
 
 function getNameApi(name){
-    console.log("fetching url")
     return fetch("http://localhost:8085/api/v1/restaurants-by-name?name="+name,{
         method: 'GET',
         headers:{
@@ -29,7 +27,6 @@ function getNameApi(name){
 }
 
 function getTypeApi(type){
-    console.log("fetching url")
     return fetch("http://localhost:8085/api/v1/restaurants-by-type?type="+type,{
         method: 'GET',
         headers:{
@@ -42,7 +39,6 @@ function getTypeApi(type){
 }
 
 function getNameTypeApi(name,type){
-    console.log(name+type)
     return fetch("http://localhost:8085/api/v1/restaurants-by-type_name?name="+name+"&type="+type,{
         method: 'GET',
         headers:{

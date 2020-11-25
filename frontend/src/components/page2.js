@@ -9,11 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Container from '@material-ui/core/Container';
 import {useSelector, useDispatch} from 'react-redux';
 import Load from './Loading';
-
-import { Provider } from 'react-redux';
-import store from '../store';
 import {getVisited} from '../actions/visitedActions';
-import {getPosts} from '../actions/postActions';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -33,8 +29,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
-
 const useStyles = makeStyles({
   table: {
     minWidth: 500,
@@ -43,16 +37,13 @@ const useStyles = makeStyles({
   },
 });
 
-  
 const Page2=()=>{
 
   const dispatch = useDispatch();
   const visited = useSelector(state => state.visited.visited)
   const loading =useSelector(state => state.visited.loading);
   const error =useSelector(state => state.visited.error);
-
-
-    
+ 
   useEffect(()=>{
     dispatch(getVisited());
     },[]);
@@ -75,9 +66,6 @@ const Page2=()=>{
         <TableHead>
           <TableRow>
             <StyledTableCell>Restaurant Name</StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">Date Visited</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -87,9 +75,6 @@ const Page2=()=>{
               <StyledTableCell component="th" scope="row">
                 {row.restaurant}
               </StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right">{row.date}</StyledTableCell>
             </StyledTableRow>
           ))}

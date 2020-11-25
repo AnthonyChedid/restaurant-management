@@ -1,7 +1,6 @@
 import {call,put,takeEvery} from 'redux-saga/effects';
 
 function getVisitedApi(){
-    console.log("fetching visited url");
     return fetch('http://localhost:8085/api/v1/visited',{
         method: 'GET',
         headers:{

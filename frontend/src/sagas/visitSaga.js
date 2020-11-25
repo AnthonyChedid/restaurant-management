@@ -3,7 +3,6 @@ import axios from 'axios'
 
 
 function* urlVisit(visit) {
-    console.log('visit url');
     try {
         return axios.post("http://localhost:8085/api/v1/visit",visit);
     }
@@ -14,7 +13,6 @@ function* urlVisit(visit) {
   }
 
   function* addVisit(action) {
-    console.log('Adding a visittttttttttt');
     try {
     
       const result = yield call(urlVisit,action.visit);
@@ -23,7 +21,6 @@ function* urlVisit(visit) {
       console.log(action.visit);
       yield put({ type: 'NEW_VISIT_SUCCESS'});
 
-      console.log('Added a user successfully');
     } 
     catch(e) {
         yield put({ type: 'NEW_VISIT_FAILED'});
