@@ -68,6 +68,7 @@ const Page2=()=>{
   }
 
   return (
+    <>
     <Container maxWidth="sm">
     <TableContainer>
       <Table className={classes.table} aria-label="customized table">
@@ -95,7 +96,10 @@ const Page2=()=>{
         </TableBody>
       </Table>
     </TableContainer>
+    {visited.length===0 && <p>No visits yet</p>}
     </Container>
+    
+    </>
     )
   }
 

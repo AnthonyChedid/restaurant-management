@@ -72,7 +72,7 @@ export default function Cards(props){
       var yyyy = today.getFullYear();
 
       today = mm + '/' + dd + '/' + yyyy;
-      let visit={restaurant:e.currentTarget.value , date:today,}
+      let visit={restaurant:e.currentTarget.value, date:today,}
 
       dispatch(postVisit(visit));
       setOpen(true);
@@ -114,10 +114,10 @@ export default function Cards(props){
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small" color="primary" onClick={handleClick}>
+            <Button size="small" color="primary" value={props.post.restaurantName}onClick={handleClick}>
               Visit
             </Button>
-            <Button size="small" color="primary" value={props} onClick={handleDialog}>
+            <Button size="small" color="primary" onClick={handleDialog}>
               Learn More
             </Button>
 
@@ -155,9 +155,9 @@ export default function Cards(props){
 
 
           </CardActions>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-          A Visit has been added to page 2
+          A Visit to {props.post.restaurantName} has been registered
         </Alert>
       </Snackbar>
         </Card>

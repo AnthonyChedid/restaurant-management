@@ -14,17 +14,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { SelectField } from 'material-ui';
 import Load from './Loading';
-import Error from './Error';
-
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Pages from './Pagination';
 
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      marginTop: 10,
       minWidth: 120
     },
   
@@ -46,8 +42,7 @@ var state={
 
 
 const Posts=()=>{
-    const [type, setType] = React.useState("");
-
+    
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.posts)
     const loading =useSelector(state => state.posts.loading);
@@ -56,9 +51,12 @@ const Posts=()=>{
     const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
 
+    const [type, setType] = React.useState("");
+    const [currentPage,setCurrentPage]=React.useState(1);
+    const [postsPerPage]=React.useState(9);
+
     const OnTextChange= (e) =>{
         state.searchText=e.target.value;
-        
 
     }
     
@@ -78,7 +76,6 @@ const Posts=()=>{
     },[]);
 
     
-    
     while(loading===true){
         return(
             <div>
@@ -86,9 +83,25 @@ const Posts=()=>{
             </div>
         )
     }
+    
+    const paginate = (pageNumber) =>{
+        setCurrentPage(pageNumber);
+        const indexOfLastPost = currentPage * postsPerPage;
+    };
+
+    // get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost=indexOfLastPost - postsPerPage;
+    const currentPosts=posts.slice(indexOfFirstPost,indexOfLastPost);
+    console.log(" index of last post: "+indexOfFirstPost);
+    console.log(" index of last post: "+indexOfLastPost);
+    console.log(currentPosts);
+
+    
 
     return (
         <>
+       
         <div className={classes.root}>
             <TextField flexGrow={1} id="textField" 
                 onChange={OnTextChange}
@@ -117,18 +130,29 @@ const Posts=()=>{
             </div>
             <Grid container className={classes.root} spacing={2}>
                 <Grid item xs={12}>
-                    <Grid container justify="center" spacing={spacing}>
+                    <Grid container justify="center" spacing={spacing} marginTop={15}>
                         
-                        {posts.length>0 && posts.map((post) => (
+                        {posts.length>0 && currentPosts.map((post) => (
                             <Card post={post} key={post.id} />
 
                         )) }
+                        
                         {posts.length===0 && <p>No restaurants availble </p>}
-                        <br/>
-                        {error && !loading && <p>{error} </p>}
+                        
+                        
+                        
+                        {/* {error && !loading && <p>{error} </p>} */}
+                    
                     </Grid>
+                    
                 </Grid>
+                
             </Grid>
+                        <Pages  
+                            postsPerPage={postsPerPage}
+                            totalPosts={posts.length}
+                            paginate={paginate}
+                        />
         </>
 
     )
