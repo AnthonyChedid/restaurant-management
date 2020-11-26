@@ -8,7 +8,6 @@ function Alert(props) {
   }
 
 const Error=(error)=>{
-    console.log(error.error);
     if(error.error!==null){
     return(
         <div>
