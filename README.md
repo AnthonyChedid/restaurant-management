@@ -10,6 +10,6 @@ to test this project:
 
 4: use file "queries.sql" to fill tables
 
-5: use command "npm start" in the "frontend" file directory to start project, it will launch on localhost:8000
+5: use command "npm start" in the "frontend" file directory to start project, it will launch on localhost:3000
 
 
