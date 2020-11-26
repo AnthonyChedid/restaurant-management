@@ -114,10 +114,10 @@ export default function Cards(props){
             
             <DialogContent  maxWidth={"lg"}>
             <Grid container>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={20} md={6}>
                   <img src={props.post.image} className={classes.image}/>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} md={6}>
                   <br/>
                 <Typography variant="h6" fontWeight="fontWeightBold" gutterBottom>
                   <Box fontWeight="fontWeightBold" m={1}>Name : </Box>{props.post.restaurantName}

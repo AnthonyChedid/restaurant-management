@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 import {useSelector, useDispatch} from 'react-redux';
 import Load from './Loading';
 import {getVisited} from '../actions/visitedActions';
+import Error from './Error';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -82,6 +83,7 @@ const Page2=()=>{
       </Table>
     </TableContainer>
     {visited.length===0 && <p>No visits yet</p>}
+    <Error error={error}/>
     </Container>
     
     </>

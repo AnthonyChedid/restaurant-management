@@ -1,18 +1,5 @@
 import {call,put,takeEvery} from 'redux-saga/effects';
-
-function getVisitedApi(){
-    return fetch('http://localhost:8085/api/v1/visited',{
-        method: 'GET',
-        headers:{
-            'Content-Type':'application/json',
-         }
-
-    }).then(response => response.json())
-    .catch((error)=> {throw error})
-
-}
-
-
+import {getVisitedApi} from './apiCalls';
 
 function* fetchVisited(action){
     

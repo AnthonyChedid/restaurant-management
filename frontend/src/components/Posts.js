@@ -12,8 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Load from './Loading';
 import Pages from './Pagination';
-
-
+import Error from './Error';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +54,6 @@ const Posts=()=>{
     const classes = useStyles();
 
     const [type, setType] = React.useState("");
-    const [searchText,setSearchText]=React.useState("");
     const [currentPage,setCurrentPage]=React.useState(1);
     const [postsPerPage]=React.useState(9);
 
@@ -71,6 +70,7 @@ const Posts=()=>{
         
         dispatch(getPosts(state));
         state.searchText="";
+        setCurrentPage(1);
     }
     
     useEffect(()=>{
@@ -84,6 +84,7 @@ const Posts=()=>{
             </div>
         )
     }
+
     const paginate = (pageNumber) =>{
         setCurrentPage(pageNumber);
         const indexOfLastPost = currentPage * postsPerPage;
@@ -95,13 +96,14 @@ const Posts=()=>{
     const currentPosts=posts.slice(indexOfFirstPost,indexOfLastPost);
     
     return (
-        <>
+        <Container maxWidth="lg">
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={6} >
                     <Grid container justify="center" >
                         <TextField id="textField" 
                             onChange={OnTextChange}
                             floatingLabelText="Search Restaurant"
+                            fullWidth={true}
                         />
                     </Grid>
                 </Grid>
@@ -142,7 +144,7 @@ const Posts=()=>{
                             )) }
                         
                         {posts.length===0 && <p>No restaurants availble </p>}
-                        {/* {error && !loading && <p>{error} </p>} */}
+                        <Error error={error}/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -151,8 +153,8 @@ const Posts=()=>{
                 totalPosts={posts.length}
                 paginate={paginate}
             />
-
-        </>
+    </Container>
+    
         
 
     )
